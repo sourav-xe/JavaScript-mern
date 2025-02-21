@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .container{
+        height: 300px;
+        width: 700px;
+        background-color: aqua;
+        margin:  0 auto;
+        margin-top: 130px;
+        display: flex;
+        gap: 20px;
+        
+    }
+    .box{
+        width: 100px;
+        height: 100px;
+        gap: 20px;
+        margin-left: 30px;
+        margin-top: 30px;
+    }
+    .yellow{
+        background-color: yellow;
+    }
+    .red{
+        background-color: red;
+    }
+    .blue{
+        background-color: blue;
+    }
+    .green{
+        background-color: green;
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="box yellow"></div>
+        <div class="box red"></div>
+        <div class="box blue"></div>
+        <div class="box green"></div>
+    </div>
+    <p id="clickedbox"></p>
+    <script>
+        const container = document.querySelector(".container");
+        const box = document.querySelectorAll(".box");
+        let clickedbox = document.getElementById("clickedbox");
+        
+        container.addEventListener("click",(event)=>{
+            console.log(event.target);
+
+            clickedbox.textContent = event.target.className;
+            div.addEventListener
+        })
+    </script>
+</body>
+</html>
