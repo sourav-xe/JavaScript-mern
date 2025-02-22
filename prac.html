@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>criecbuzz</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(45deg, #141e30, #243b55);
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .container {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        color: black;
+    }
+    input, select, button {
+        margin: 10px;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+    button {
+        background: linear-gradient(45deg, #ff758c, #ff7eb3);
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    button:hover {
+        background: linear-gradient(45deg, #e63946, #ff758c);
+    }
+    .shape-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 20px;
+    }
+    .shape {
+        width: 50px;
+        height: 50px;
+        margin: 10px;
+        transition: all 0.3s ease-in-out;
+    }
+    .circle {
+        border-radius: 50%;
+    }
+</style>
+<body>
+    <div class="container">
+        <label for="shape">Number of Shapes:</label>
+        <input type="number" id="shape" min="1">
+
+        <label for="color">Select Color:</label>
+        <input type="color" id="color">
+
+        <label for="choose">Choose Shape:</label>
+        <select id="choose">
+            <option value="circle">Circle</option>
+            <option value="square">Square</option>
+        </select>
+
+        <button onclick="generateShapes(event)">Generate</button>
+        <div class="shape-container" id="shapeContainer"></div>
+    </div>
+
+    <script>
+        function generateShapes(event) {
+            event.preventDefault(); // Prevent form submission
+            const shapeCount = document.getElementById("shape").value;
+            const shapeColor = document.getElementById("color").value;
+            const shapeType = document.getElementById("choose").value;
+            const container = document.getElementById("shapeContainer");
+            container.innerHTML = "";
+
+            for (let i = 0; i < shapeCount; i++) {
+                const shape = document.createElement("div");
+                shape.classList.add("shape");
+                shape.style.backgroundColor = shapeColor;
+                
+                if (shapeType === "circle") {
+                    shape.classList.add("circle");
+                }
+                container.appendChild(shape);
+            }
+        }
+    </script>
+</body>
+</html>
