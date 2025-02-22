@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO-LIST</title>
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO-LIST</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(45deg, #000000, #8b290e);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+        }
+        input {
+            padding: 10px;
+            width: 80%;
+            border: none;
+            border-radius: 5px;
+            box-shadow: inset 3px 3px 5px rgba(0, 0, 0, 0.2),rgba(36, 14, 233, 0.2) ;
+            outline: none;
+            background: linear-gradient(45deg, #0ac8d5, #ddd5de);
+            color: black;
+        }
+        button {
+            padding: 10px 15px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff758c, #df7c1a);
+            color: white;
+            transition: 0.3s;
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+        }
+        button:hover {
+            background: linear-gradient(45deg, #f81a1a, #ff758c);
+            transform: translateY(-2px);
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        li {
+            background: white;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        li button {
+            background: red;
+            padding: 5px 10px;
+            font-size: 14px;
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+        }
+        li button:hover {
+            background: darkred;
+        }
+        #deleteAll {
+            display: none;
+            background: rgb(177, 211, 10);
+        }
+        #deleteAll:hover {
+            background: darkgray;
+        }
+    </style>
+<body>
+    <div class="container">
+        <h2>TODO-LIST</h2>
+
+        <input type="text" id="myinput" placeholder="ADD YOUR TASK">
+        <button id="btn" type="button" onclick="addTask()">Add Task</button>
+        <ul id="taskList"></ul>
+        <button id="deleteAll" onclick="deleteAllTask()" style="display: none;">Delete All</button>
+    </div>
+    
+    <script>
+
+        const myInput = document.getElementById("myinput");
+        const btn = document.getElementById("btn");
+        const taskList = document.getElementById("taskList");
+        const deleteAll = document.getElementById("deleteAll");
+
+        function addTask(){
+            const task = myInput.value;
+            console.log(task);
+             
+            if(task === ""){
+                alert("please enter task");
+                return;
+            }
+            const li = document.createElement("li");
+            li.textContent=task;
+            const del = document.createElement("button")
+            del.textContent = "Delete";
+            del.addEventListener("click",()=>{
+                li.remove();
+            })
+            li.appendChild(del);
+            taskList.appendChild(li);
+            checkTaskList();
+
+            myInput.value = "";
+        }
+
+        function checkTaskList(){
+            if(taskList.childElementCount >=0){
+                deleteAll.style.display= "block";
+            }
+        }
+        function deleteAllTask(){
+            taskList.innerHTML = "";
+            deleteAll.style.display = "none";
+        }
+
+    </script>
+</body>
+</html>

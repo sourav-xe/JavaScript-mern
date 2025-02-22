@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <h1>Events</h1>
+
+    <button type="button" id="btn">Click Me</button>
+
+    <input type="text" name="" id="input">
+    <h1>press a key</h1>
+    <p id="keycode"></p> -->
+
+    <!-- <input type="text" id="myinput" placeholder="blur"> -->
+
+
+
+    <!-- -------------form orrr submit-------------- -->
+
+    <form id="myform">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="email">email</label>
+        <input type="email" name="email" id="email" required>
+        <button type="submit">SUBMIT</button>
+    </form>
+
+
+
+    <script>
+
+        // const btn = document.querySelector("#btn");
+        // const input = document.getElementById("input");
+
+        // input.addEventListener("keypress", ()=>{
+        //     alert("key is press:     " + event.key);
+        // });
+
+        //  btn.addEventListener("dblclick",(event)=>{
+        //     console.log("button is dble clicked");
+        //     console.log(event);
+        //     btn.textContent="this is doubl;e clickd";
+        //     // alert("buttn is clicked");
+        // });
+
+        // btn.addEventListener("mouseout", (event)=> {
+        //     alert("button is hovered");
+        //     console.log(event);
+        // });
+
+//  ---------------KEYDOWN---------------
+        //     document.addEventListener("keydown", function(event){
+        //     document.getElementById("keycode").innerHTML=event.keyCode;
+        // });
+
+        // --------------blur---------------
+        // const input = document.getElementById("myinput");
+        // input.addEventListener("blur", ()=>{
+        //     alert("input lost focus");
+        // });
+
+
+        // --------------form or submit --------------
+
+        const form = document.getElementById("myform");
+
+        form.addEventListener("submit", (event)=>{
+            event.preventDefault();
+            const name=form.name.value;
+            const email=form.email.value;
+            alert('Name : ${name} , Email : ${email}');
+        });
+
+
+
+
+
+    </script>
+
+</body>
+</html>

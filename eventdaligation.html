@@ -35,6 +35,11 @@
     .green{
         background-color: green;
     }
+  .btn{
+    background-color: black;
+    height: 130;
+    width: 200px;
+  }
 </style>
 <body>
     <div class="container">
@@ -48,6 +53,12 @@
         const container = document.querySelector(".container");
         const box = document.querySelectorAll(".box");
         let clickedbox = document.getElementById("clickedbox");
+
+
+        let newDiv= document.createElement("div");
+        btn.className="btn"
+
+        container.appendChild(newDiv);
         
         container.addEventListener("click",(event)=>{
             console.log(event.target);
