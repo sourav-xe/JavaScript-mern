@@ -89,6 +89,16 @@
         #deleteAll:hover {
             background: darkgray;
         }
+        .complete {
+            background: green;
+        }
+        .completed {
+            background: darkgreen ;
+            color: white;
+        }
+        .complete:hover {
+            background: darkgreen;
+        }
     </style>
 <body>
     <div class="container">
@@ -109,7 +119,6 @@
 
         function addTask(){
             const task = myInput.value;
-            console.log(task);
              
             if(task === ""){
                 alert("please enter task");
@@ -117,16 +126,27 @@
             }
             const li = document.createElement("li");
             li.textContent=task;
+
+            const completebtn=document.createElement("button");
+            completebtn.textContent="Completed";
+            completebtn.classList.add("complete");
+            completebtn.addEventListener("click", ()=>{
+            li.classList.toggle("completed");
+            })
+
             const del = document.createElement("button")
             del.textContent = "Delete";
+            del.classList.add("delete")
             del.addEventListener("click",()=>{
                 li.remove();
             })
+
+            li.appendChild(completebtn);
             li.appendChild(del);
             taskList.appendChild(li);
             checkTaskList();
 
-            myInput.value = "";
+           
         }
 
         function checkTaskList(){
