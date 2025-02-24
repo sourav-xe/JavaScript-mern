@@ -49,14 +49,17 @@
         <div class="box green"></div>
     </div>
     <p id="clickedbox"></p>
+
+
+
     <script>
         const container = document.querySelector(".container");
         const box = document.querySelectorAll(".box");
         let clickedbox = document.getElementById("clickedbox");
 
 
-        let newDiv= document.createElement("div");
-        btn.className="btn"
+        // let newDiv= document.createElement("div");
+        // newDiv.className= "box blue"
 
         container.appendChild(newDiv);
         
@@ -64,7 +67,7 @@
             console.log(event.target);
 
             clickedbox.textContent = event.target.className;
-            div.addEventListener
+            
         })
     </script>
 </body>
