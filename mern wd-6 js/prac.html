@@ -3,97 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>criecbuzz</title>
+    <title>TODO-LIST</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(45deg, #000000, #8b290e);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+        }
+        input {
+            padding: 10px;
+            width: 80%;
+            border: none;
+            border-radius: 5px;
+            box-shadow: inset 3px 3px 5px rgba(0, 0, 0, 0.2),rgba(36, 14, 233, 0.2);
+            outline: none;
+            background: linear-gradient(45deg, #0ac8d5, #ddd5de);
+            color: black;
+        }
+        button {
+            padding: 10px 15px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff758c, #df7c1a);
+            color: white;
+            transition: 0.3s;
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+        }
+        button:hover {
+            background: linear-gradient(45deg, #f81a1a, #ff758c);
+            transform: translateY(-2px);
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        li {
+            background: white;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        li button {
+            background: red;
+            padding: 5px 10px;
+            font-size: 14px;
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+        }
+        li button:hover {
+            background: darkred;
+        }
+        #deleteAll {
+            display: none;
+            background: rgb(177, 211, 10);
+        }
+        #deleteAll:hover {
+            background: darkgray;
+        }
+        .complete {
+            background: green;
+        }
+        .completed {
+            background: darkgreen;
+            color: white;
+        }
+        .complete:hover {
+            background: darkgreen;
+        }
+    </style>
 </head>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background: linear-gradient(45deg, #141e30, #243b55);
-        color: white;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        margin: 0;
-    }
-    .container {
-        background: white;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
-        text-align: center;
-        color: black;
-    }
-    input, select, button {
-        margin: 10px;
-        padding: 10px;
-        border: none;
-        border-radius: 5px;
-        font-size: 16px;
-    }
-    button {
-        background: linear-gradient(45deg, #ff758c, #ff7eb3);
-        color: white;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-    button:hover {
-        background: linear-gradient(45deg, #e63946, #ff758c);
-    }
-    .shape-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        margin-top: 20px;
-    }
-    .shape {
-        width: 50px;
-        height: 50px;
-        margin: 10px;
-        transition: all 0.3s ease-in-out;
-    }
-    .circle {
-        border-radius: 50%;
-    }
-</style>
 <body>
     <div class="container">
-        <label for="shape">Number of Shapes:</label>
-        <input type="number" id="shape" min="1">
+        <h2>TODO-LIST</h2>
 
-        <label for="color">Select Color:</label>
-        <input type="color" id="color">
-
-        <label for="choose">Choose Shape:</label>
-        <select id="choose">
-            <option value="circle">Circle</option>
-            <option value="square">Square</option>
-        </select>
-
-        <button onclick="generateShapes(event)">Generate</button>
-        <div class="shape-container" id="shapeContainer"></div>
+        <input type="text" id="myinput" placeholder="ADD YOUR TASK">
+        <button id="btn" type="button" onclick="addTask()">Add Task</button>
+        <ul id="taskList"></ul>
+        <button id="deleteAll" onclick="deleteAllTask()">Delete All</button>
     </div>
-
+    
     <script>
-        function generateShapes(event) {
-            event.preventDefault(); // Prevent form submission
-            const shapeCount = document.getElementById("shape").value;
-            const shapeColor = document.getElementById("color").value;
-            const shapeType = document.getElementById("choose").value;
-            const container = document.getElementById("shapeContainer");
-            container.innerHTML = "";
+        const userInput = document.querySelector("#myinput");
+        const taskList = document.querySelector("#taskList");
+        const deleteAll = document.querySelector("#deleteAll");
 
-            for (let i = 0; i < shapeCount; i++) {
-                const shape = document.createElement("div");
-                shape.classList.add("shape");
-                shape.style.backgroundColor = shapeColor;
-                
-                if (shapeType === "circle") {
-                    shape.classList.add("circle");
-                }
-                container.appendChild(shape);
+        function addTask() {
+            const task = userInput.value.trim();
+
+            if (task === "") {
+                alert("Enter a task");
+                return;
             }
+
+            // Create a new list item
+            const li = document.createElement("li");
+            li.textContent = task;
+
+            // Create a delete button
+            const delButton = document.createElement("button");
+            delButton.textContent = "Delete";
+            delButton.classList.add("delete");
+
+            // Delete button event listener
+            delButton.addEventListener("click", () => {
+                li.remove();
+                checkTaskList();
+            });
+
+            // Append delete button to list item
+            li.appendChild(delButton);
+            taskList.appendChild(li);
+
+            // Clear input field
+            userInput.value = "";
+
+            // Check task list to show/hide "Delete All" button
+            checkTaskList();
+        }
+
+        function checkTaskList() {
+            if (taskList.childElementCount > 1) {
+                deleteAll.style.display = "block";
+            } else {
+                deleteAll.style.display = "none";
+            }
+        }
+
+        function deleteAllTask() {
+            taskList.innerHTML = ""; // Clear all tasks
+            checkTaskList();
         }
     </script>
 </body>

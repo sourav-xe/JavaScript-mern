@@ -116,6 +116,7 @@
         const btn = document.getElementById("btn");
         const taskList = document.getElementById("taskList");
         const deleteAll = document.getElementById("deleteAll");
+        
 
         function addTask(){
             const task = myInput.value;
@@ -141,11 +142,12 @@
                 li.remove();
             })
 
+
+            checkTaskList();
+            taskList.appendChild(li);
             li.appendChild(completebtn);
             li.appendChild(del);
-            taskList.appendChild(li);
-            checkTaskList();
-
+            
            
         }
 

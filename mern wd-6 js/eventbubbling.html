@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>event bubbling</title>
+    <style>
+      .gp {
+        width: 300px;
+        height: 300px;
+        background-color: yellow;
+        margin: 50% auto;
+        border: 2px solid red;
+      }
+      .parent {
+        width: 200px;
+        height: 200px;
+        background-color: green;
+        margin: 50% auto;
+        border: 2px solid green;
+      }
+      .child {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        margin: 50% auto;
+        border: 2px solid blue;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="gp">
+      grandparent
+
+      <div class="parent">
+        parent
+
+        <div class="child">child</div>
+      </div>
+    </div>
+
+    <script>
+      const gp = document.querySelector(".gp");
+      const parent = document.querySelector(".parent");
+      const child = document.querySelector(".child");
+
+    //   event bubbling (bottom - top)
+    //   gp.addEventListener(
+    //     "click",
+    //     () => {
+    //       console.log("grandparent is clicked");
+    //     },
+        
+    //   );
+
+    //   parent.addEventListener(
+    //     "click",
+    //     () => {
+    //       console.log("parent is clicked");
+    //     },
+       
+    //   );
+
+    //   child.addEventListener(
+    //     "click",
+    //     () => {
+    //       console.log("child is clicked");
+
+    //       // console.log(event);
+    //     },
+    
+    //   );
+
+
+    // // how to stop event bubbling
+    //     gp.addEventListener(
+    //     "click",
+    //     (event) => {
+    //       console.log("grandparent is clicked");
+    //       event.stopPropagation()
+    //     },
+       
+
+        
+    //   );
+
+    //   parent.addEventListener(
+    //     "click",
+    //     () => {
+    //       console.log("parent is clicked");
+         
+    //     },
+       
+    //   );
+
+    //   child.addEventListener(
+    //     "click",
+    //     () => {
+    //       console.log("child is clicked");
+
+    //       // console.log(event);
+    //     },
+    
+    //   );
+
+
+    // event capturing (top - bottom)
+
+        gp.addEventListener(
+        "click",
+        () => {
+          console.log("grandparent is clicked");
+        },
+        
+      {capture:true});
+
+      parent.addEventListener(
+        "click",
+        () => {
+          console.log("parent is clicked");
+        },
+       
+      {capture:true});
+
+      child.addEventListener(
+        "click",
+        () => {
+          console.log("child is clicked");
+
+          console.log(event);
+        },
+    
+      {capture:true});
+    </script>
+  </body>
+</html>
