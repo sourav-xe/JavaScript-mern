@@ -3,159 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TODOO LIST</title>
+    <title>TODO LIST</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        input {
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        button {
+            padding: 10px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #218838;
+        }
+
+        .ul {
+            margin-top: 15px;
+            text-align: left;
+        }
+
+        .ul div {
+            display: flex;
+            justify-content: space-between;
+            background: #fff;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            margin-bottom: 5px;
+        }
+
+        .ul div span {
+            flex-grow: 1;
+        }
+
+        .ul div button {
+            background: red;
+            padding: 5px 10px;
+            font-size: 14px;
+            border: none;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .ul div button:hover {
+            background: darkred;
+        }
+
+        .completed {
+            background-color: #218838;
+            /* color: rgb(255, 255, 255); */
+            opacity: 0.7;
+            text-decoration: line-through;
+            
+        }
+    </style>
 </head>
-<style>
-    * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f4f4f4;
-}
-
-.container {
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    width: 350px;
-    text-align: center;
-}
-
-h1 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 15px;
-}
-
-.list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-input {
-    padding: 10px;
-    border: 2px solid #ddd;
-    border-radius: 6px;
-    font-size: 16px;
-    width: 100%;
-}
-
-button {
-    padding: 10px;
-    background: #28a745;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #218838;
-}
-
-.ul {
-    margin-top: 15px;
-    text-align: left;
-}
-
-.ul div {
-    display: flex;
-    justify-content: space-between;
-    background: #fff;
-    padding: 10px;
-    border-radius: 6px;
-    border: 1px solid #ddd;
-    margin-bottom: 5px;
-}
-
-.ul div span {
-    flex-grow: 1;
-}
-
-.ul div button {
-    background: red;
-    padding: 5px 10px;
-    font-size: 14px;
-}
-
-.ul div button:hover {
-    background: darkred;
-}
-.completed {
-    background-color: #218838;
-    color: gray;
-    opacity: 0.7;
-}
-
-</style>
 <body>
     <div class="container">
-        <h1>TODOO LIST</h1>
-        <form class="list">
-            <label for="inputField" id="inputField"></label>
+        <h1>TODO LIST</h1>
+        <form class="form">
+            <label for="inputField">Enter Task</label>
             <input type="text" id="inputField">
             <button id="addTask">Add Task</button>
-            <ul class="ul"></ul>
         </form>
+        <div class="ul"></div>
     </div>
+
+    <script>
+        const userInput = document.querySelector("#inputField");
+        const addTask = document.querySelector("#addTask");
+        const ul = document.querySelector(".ul");
+
+        document.querySelector(".form").addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const taskText = userInput.value.trim();
+            if (taskText === "") {
+                alert("Enter a task");
+                return;
+            }
+
+            const taskDiv = document.createElement("div");
+            const taskSpan = document.createElement("span");
+            taskSpan.textContent = taskText;
+            
+            const delButton = document.createElement("button");
+            delButton.textContent = "Delete";
+            delButton.classList.add("del");
+
+            delButton.addEventListener("click", () => {
+                event.stopPropagation(); 
+                taskDiv.remove();
+            });
+
+            taskDiv.appendChild(taskSpan);
+            taskDiv.appendChild(delButton);
+            ul.appendChild(taskDiv);
+
+            userInput.value = "";
+        });
+
+        ul.addEventListener("click", (event) => {
+            if (event.target.tagName === "SPAN") {
+                event.target.parentElement.classList.toggle("completed");
+            }
+        });
+    </script> 
+
+
 </body>
-<script>
-    const list = document.querySelector(".list")
-    const userInput = document.querySelector("#inputField");
-    const addTask = document.querySelector("#addTask")
-    const ul = document.querySelector(".ul");
-
-    addTask.addEventListener("click",(event)=>{
-        event.preventDefault();
-
-        const Tasktext = userInput.value;
-        
-        if(Tasktext === ""){
-            alert("enter a task");
-            return;
-        }
-    
-
-    const li = document.createElement("li");
-    li.textContent = Tasktext;
-  
-
-    const del = document.createElement("button");
-    del.textContent = "delete";
-    del.classList.add("del")
-
-    del.addEventListener("click",()=>{
-        li.remove();
-    })
-    li.appendChild(del);
-    ul.appendChild(li);
-
-     userInput.value = ""
-    })
-
-     ul.addEventListener("click", (event) =>{
-
-        if(event.target.classList.contains("del")){
-            event.target.parentElement.remove();
-        }
-        else if(event.target.tagName === "LI"){
-            event.target.classList.toggle("completed")
-        }
-
-     })
-
-
-
-
-</script>
+</html>

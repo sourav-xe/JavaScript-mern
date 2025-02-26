@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <h1>Local and Session Storage</h1>
+    <script>
+
+        localStorage.setItem("location","Delhi");
+        localStorage.setItem("age","42");
+
+        const data = localStorage.removeItem("location");
+       
+        console.log(data);
+
+
+        let obj1 = { 
+            name : "sourav",
+            age:20,
+            address:{
+                city : "Delhi",
+                state : "delhi"
+            },
+            },
+
+  localStorage.setItem("obj1", JSON.stringify(obj1));
+
+      const data1= JSON.parse(localStorage.getItem("obj1"));
+      console.log(data1);
+   
+
+
+
+
+
+</body>
+</html>
