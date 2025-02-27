@@ -3,38 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Local and Session Storage</title>
 </head>
 <body>
-     <h1>Local and Session Storage</h1>
+    <h1>Local and Session Storage</h1>
+
     <script>
+      
+        localStorage.setItem("location", "Delhi");
+        localStorage.setItem("age", "42");
 
-        localStorage.setItem("location","Delhi");
-        localStorage.setItem("age","42");
+        
+        localStorage.removeItem("location");
 
-        const data = localStorage.removeItem("location");
-       
-        console.log(data);
+        
+        console.log(localStorage.getItem("location"));
 
-
+        // Creating an object
         let obj1 = { 
-            name : "sourav",
-            age:20,
-            address:{
-                city : "Delhi",
-                state : "delhi"
-            },
-            },
+            name: "sourav",
+            age: 20,
+            address: {
+                city: "Delhi",
+                state: "Delhi"
+            }
+        };
 
-  localStorage.setItem("obj1", JSON.stringify(obj1));
+       
+        localStorage.setItem("obj1", JSON.stringify(obj1));
 
-      const data1= JSON.parse(localStorage.getItem("obj1"));
-      console.log(data1);
-   
+        const data1 = JSON.parse(localStorage.getItem("obj1"));
+        console.log(data1);
 
-
-
-
-
+    </script>
 </body>
 </html>
