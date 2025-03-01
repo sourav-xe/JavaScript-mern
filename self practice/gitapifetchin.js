@@ -1,24 +1,17 @@
-const karo = async() => {
-   
-    try {
-
+// async function interval() {
+//     try {
+//         const info = await fetch("https://api.github.com/users/sourav-xe")
+//         const  data = await info.json()
+//         let name = data.login
+//         console.log(name)
         
-
-        let data = await fetch("https://api.github.com/users/sourav-xe")
-        const response = await data.json(); 
-
-         
-        document.querySelector("#user").innerHTML = response.login;
-        document.querySelector("#idz").innerHTML = response.id;
-        document.querySelector("#avatar").src = response.avatar_url;          
-    } 
+//     }
+//      catch (error) {
+//         console.log(error)
+//     }
     
-    
-    catch (error) {
-        console.log(Error)
-    } 
-}
-
-karo()
-
-
+// }
+// interval()
+fetch("https://dog.ceo/api/breeds/image/random")
+  .then(res => res.json())
+  .then(data => document.getElementById("dog").src = data.message);
