@@ -22,7 +22,7 @@
     start.addEventListener("click",()=>{
         if(!Nahi){
            Nahi =  setInterval(() => {
-                console.log(Date.now())
+                document.querySelector("h1").innerHTML = "change hogaya"
             }, 1000);
         }
     })
@@ -34,7 +34,7 @@
         if(Nahi){
             setTimeout(() => {
             clearInterval(Nahi)
-            console.log("stopped")
+            document.querySelector("h1").innerHTML = "change ruk diagaya"
         }, 100);
 
         }

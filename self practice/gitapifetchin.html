@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub User Fetcher</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS -->
+</head>
+<style>
+    /* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container */
+.container {
+    margin-top: 50px;
+}
+
+/* Card Styling */
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    margin: auto;
+    text-align: center;
+}
+
+/* Avatar Image */
+#avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #007bff;
+    margin-bottom: 10px;
+}
+
+/* Text Styles */
+p {
+    font-size: 18px;
+    color: #333;
+}
+
+</style>
+<body>
+    <div class="container">
+        <h1>Welcome to GitHub User Fetcher</h1>
+        <div class="card">
+            <img id="avatar" src="" alt="User Avatar">
+            <p id="user"><strong>Username:</strong> <span></span></p>
+            <p id="idz"><strong>ID:</strong> <span></span></p>
+        </div>
+    </div>
+
+    <script src="gitapifetchin.js"></script> <!-- Link to JavaScript -->
+</body>
+</html>
