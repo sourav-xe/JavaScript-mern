@@ -1,4 +1,4 @@
-let n=2;
+// let n=2;
     // to check number is odd or even
 
 // if(n%2==0){
@@ -51,3 +51,19 @@ let n=2;
 //     fact=fact*i
 // }
 // console.log(fact)
+
+        const p1 = Promise.resolve("success")
+        const p2 = Promise.reject("rejected")
+
+        Promise.all([p1,p2]).then((res)=>{
+            console.log(res);
+        })
+        .catch((error)=>{
+            console.log("error",error);
+        })
+
+
+
+
+
+        // 

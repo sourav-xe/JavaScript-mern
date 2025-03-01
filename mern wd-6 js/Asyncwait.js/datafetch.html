@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display User Info</title>
+</head>
+<body>
+    <h2>GitHub User Info</h2>
+    <p>Login: <span id="login"></span></p>
+    <p>ID: <span id="userId"></span></p>
+    <p>repo: <span id="repo"></span></p>
+    <img src="" id="img" alt="">
+
+    <script>
+        async function fetchUser() {
+            try {
+                // Fetch data from GitHub API (Replace 'octocat' with any username)
+                let response = await fetch("https://api.github.com/users/sourav-xe");
+                let data = await response.json();
+
+                // Store login and id
+                let login = data.login;
+                let id = data.id;
+                let repo = data.public_repos;
+
+                // Display in HTML
+                document.getElementById("login").textContent = login;
+                document.getElementById("userId").textContent = id;
+                document.getElementById("repo").textContent = repo;
+                document.getElementById("img").src = img;
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        }
+
+        // Call the function
+        fetchUser();
+    </script>
+</body>
+</html>

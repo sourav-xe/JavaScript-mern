@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>Timeout and Interval</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+
+</body>
+<script>
+
+    function chalu (){
+
+    const start = document.getElementById("start");
+    let Nahi;
+
+    start.addEventListener("click",()=>{
+        if(!Nahi){
+           Nahi =  setInterval(() => {
+                console.log(Date.now())
+            }, 1000);
+        }
+    })
+
+    const stop = document.querySelector("#stop");
+
+    stop.addEventListener("click",()=>{
+
+        if(Nahi){
+            setTimeout(() => {
+            clearInterval(Nahi)
+            console.log("stopped")
+        }, 100);
+
+        }
+       
+    })
+
+    }
+
+    Nahi = ""
+    chalu();
+</script>
+</html>
