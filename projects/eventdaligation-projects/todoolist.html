@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TODO LIST</title>
+    <title>TODO LIST with Local Storage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
 
         body {
@@ -17,51 +18,65 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f4f4f4;
+            background: linear-gradient(135deg, black, red);
         }
 
         .container {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            width: 350px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            width: 400px;
             text-align: center;
+            color: white;
         }
 
         h1 {
             font-size: 24px;
-            color: #333;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
+            color: #fff;
         }
 
-        .list {
+        .form {
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
 
         input {
-            padding: 10px;
-            border: 2px solid #ddd;
-            border-radius: 6px;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
             font-size: 16px;
             width: 100%;
+            outline: none;
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            transition: 0.3s;
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        input:focus {
+            background: rgba(255, 255, 255, 0.5);
         }
 
         button {
-            padding: 10px;
-            background: #28a745;
+            padding: 12px;
+            background: #ff4c4c;
             color: white;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             font-size: 16px;
             cursor: pointer;
-            margin-top: 10px;
+            transition: 0.3s;
         }
 
         button:hover {
-            background: #218838;
+            background: #d63d3d;
         }
 
         .ul {
@@ -69,49 +84,51 @@
             text-align: left;
         }
 
-        .ul div {
+        .task {
             display: flex;
             justify-content: space-between;
-            background: #fff;
-            padding: 10px;
-            border-radius: 6px;
-            border: 1px solid #ddd;
-            margin-bottom: 5px;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.3);
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 5px solid #ff4c4c;
+            transition: 0.3s;
+            color: white;
+            margin-bottom: 8px;
         }
 
-        .ul div span {
+        .task span {
             flex-grow: 1;
+            cursor: pointer;
         }
 
-        .ul div button {
-            background: red;
-            padding: 5px 10px;
+        .delete-btn {
+            background: #ff4c4c;
+            padding: 6px 10px;
             font-size: 14px;
             border: none;
             color: white;
             border-radius: 6px;
             cursor: pointer;
+            transition: 0.3s;
         }
 
-        .ul div button:hover {
-            background: darkred;
+        .delete-btn:hover {
+            background: #d63d3d;
         }
 
         .completed {
-            background-color: #218838;
-            /* color: rgb(255, 255, 255); */
-            opacity: 0.7;
+            background: rgba(255, 0, 0, 0.6);
             text-decoration: line-through;
-            
+            opacity: 0.8;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>TODO LIST</h1>
+        <h1>To-Do List with Local Storage ✅</h1>
         <form class="form">
-            <label for="inputField">Enter Task</label>
-            <input type="text" id="inputField">
+            <input type="text" id="inputField" placeholder="Enter a task...">
             <button id="addTask">Add Task</button>
         </form>
         <div class="ul"></div>
@@ -122,43 +139,66 @@
         const addTask = document.querySelector("#addTask");
         const ul = document.querySelector(".ul");
 
+        // Load tasks from local storage
+        function loadTasks() {
+            const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+            tasks.forEach(task => addTaskToUI(task.text, task.completed));
+        }
+
+        // Save tasks to local storage
+        function saveTasks() {
+            const tasks = [];
+            document.querySelectorAll(".task").forEach(taskDiv => {
+                tasks.push({
+                    text: taskDiv.querySelector("span").textContent,
+                    completed: taskDiv.classList.contains("completed")
+                });
+            });
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+        }
+
         document.querySelector(".form").addEventListener("submit", (event) => {
             event.preventDefault();
-
             const taskText = userInput.value.trim();
             if (taskText === "") {
                 alert("Enter a task");
                 return;
             }
+            addTaskToUI(taskText, false);
+            saveTasks();
+            userInput.value = "";
+        });
 
+        function addTaskToUI(taskText, isCompleted) {
             const taskDiv = document.createElement("div");
+            taskDiv.classList.add("task");
+            if (isCompleted) taskDiv.classList.add("completed");
+
             const taskSpan = document.createElement("span");
             taskSpan.textContent = taskText;
-            
+
             const delButton = document.createElement("button");
             delButton.textContent = "Delete";
-            delButton.classList.add("del");
+            delButton.classList.add("delete-btn");
 
             delButton.addEventListener("click", () => {
-                event.stopPropagation(); 
                 taskDiv.remove();
+                saveTasks();
             });
 
             taskDiv.appendChild(taskSpan);
             taskDiv.appendChild(delButton);
             ul.appendChild(taskDiv);
-
-            userInput.value = "";
-        });
+        }
 
         ul.addEventListener("click", (event) => {
             if (event.target.tagName === "SPAN") {
                 event.target.parentElement.classList.toggle("completed");
+                saveTasks();
             }
         });
-        
-    </script> 
 
-
+        loadTasks(); // Load tasks when the page loads
+    </script>
 </body>
 </html>

@@ -6,44 +6,8 @@
     <title>Document</title>
 </head>
 <body>
-    
-    <h1>Timeout and Interval</h1>
-    <button id="start">Start</button>
-    <button id="stop">Stop</button>
-
+    <div>
+        
+    </div>
 </body>
-<script>
-
-    function chalu (){
-
-    const start = document.getElementById("start");
-    let Nahi;
-
-    start.addEventListener("click",()=>{
-        if(!Nahi){
-           Nahi =  setInterval(() => {
-                document.querySelector("h1").innerHTML = "change hogaya"
-            }, 1000);
-        }
-    })
-
-    const stop = document.querySelector("#stop");
-
-    stop.addEventListener("click",()=>{
-
-        if(Nahi){
-            setTimeout(() => {
-            clearInterval(Nahi)
-            document.querySelector("h1").innerHTML = "change ruk diagaya"
-        }, 100);
-
-        }
-       
-    })
-
-    }
-
-    Nahi = ""
-    chalu();
-</script>
 </html>

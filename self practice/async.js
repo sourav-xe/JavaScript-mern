@@ -84,3 +84,22 @@
 //     }
 // }
 // fetchh()
+
+
+
+
+function greet(name, callback) {
+    console.log(`Hello, ${name}`);
+    return callback();
+      // Calling the callback function
+  }
+//    function outer (){
+//     let name = "sourav"
+//     function inner(){   
+//         console.log(name);
+        
+//     }
+//     return inner;
+//    }
+//    let s = outer();
+//    s();
