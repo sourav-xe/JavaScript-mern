@@ -213,40 +213,11 @@
 
 
 
-let retry = new Promise((resolve , reject)=>{
-    let sucess = false;
-    setTimeout(() => {
-        if(sucess){
-            let data = "data recived";
-            resolve(data);
-        }
-        else{
-            reject("Error Occured")
-        }
-    }, 2000);
-})
-retry
-.then((data)=>{
-    console.log("Recevibd data...........")
-    return data;
-})
-.then((data)=>{
-    console.log(data);
-})
-.catch((error)=>{
-    console.log(error);
-    console.log("Retrying Fetching data");
-    return new Promise ((resolve)=>{
-        setTimeout(() => {
-            resolve("Retry Sucessful, Data Processed")
-        }, 2000);
-    })
-})
+// 🔥 Challenge 1: Promises & Async/Await
+// Write a function fetchUserData() that:
 
-.then((data)=>{
-    console.log(data)
-})
+// Returns a randomly resolved or rejected promise after 1 second.
+// If resolved, it should return "✅ User data loaded"
+// If rejected, it should return "❌ API failed"
+// Use try/catch to handle errors.
 
-.finally(()=>{
-    console.log("All Process done")
-})

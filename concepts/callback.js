@@ -82,33 +82,33 @@
 
 
 
-  function fetchData(cb){
-    console.log("Fetching Data");
+//   function fetchData(cb){
+//     console.log("Fetching Data");
 
-    setTimeout(function () {
-        let randomNumber = Math.floor(Math.random()*100);
-        console.log("Data Received")
-        cb(randomNumber);
-        if(randomNumber % 2 == 0){
-            console.log("even")
-        }
-        else{
-            console.log("odd")
-        }
+//     setTimeout(function () {
+//         let randomNumber = Math.floor(Math.random()*100);
+//         console.log("Data Received")
+//         cb(randomNumber);
+//         if(randomNumber % 2 == 0){
+//             console.log("even")
+//         }
+//         else{
+//             console.log("odd")
+//         }
         
-    }, 1000);
-}
-function done(randomNumber){
-    console.log(" number is ", randomNumber)
-    if(randomNumber > 50){
-        console.log("greater")
-    }
-    else{
-        console.log("smaller")
-    }
-}
+//     }, 1000);
+// }
+// function done(randomNumber){
+//     console.log(" number is ", randomNumber)
+//     if(randomNumber > 50){
+//         console.log("greater")
+//     }
+//     else{
+//         console.log("smaller")
+//     }
+// }
    
-fetchData(done)
+// fetchData(done)
 
 
 
@@ -138,19 +138,32 @@ fetchData(done)
 
 
 
-function fetchData(cb) {
-    let randomNumber = Math.floor(Math.random() * 100);
-    console.log("Generated Number:", randomNumber);
+// function fetchData(cb) {
+//     let randomNumber = Math.floor(Math.random() * 100);
+//     console.log("Generated Number:", randomNumber);
 
-    if(randomNumber > 50){
-        cb();
-    }
+//     if(randomNumber > 50){
+//         cb();
+//     }
     
-    // Call the callback function only if the number > 50
+//     // Call the callback function only if the number > 50
+// }
+
+// function callback() {
+//     console.log("Callback executed!");
+// }
+
+// fetchData(callback);
+
+
+
+function processArray(arr, callback) {
+    return arr.map(callback); // Apply the callback to each element
 }
 
-function callback() {
-    console.log("Callback executed!");
+function double(num) {
+    return num * 2;
 }
 
-fetchData(callback);
+console.log(processArray([1], double)); 
+// Output: [2, 4, 6]

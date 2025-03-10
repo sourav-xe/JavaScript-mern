@@ -161,3 +161,33 @@ function createCounter() {
 //     console.log("See you later!");
 // });
 
+
+
+
+// 🔥 Challenge 2: Closures
+// Create a function counter() that:
+
+// Returns an inner function that increments and logs a counter value.
+// Calling const count = counter(); count(); count(); count(); should log:
+// Copy
+// Edit
+// 1
+// 2
+// 3
+// The counter value should be private and not accessible directly.
+
+
+function counter(){
+    let count = 0 ;
+    return function inner(){ 
+        setTimeout(() => {
+            count ++;
+            console.log(count) 
+        },count *1000);
+        
+    }
+}
+ let a=counter();
+a();
+a();
+a();
