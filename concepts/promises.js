@@ -12,22 +12,28 @@
 // // fetchData(callback);
 
 
-// // // convert this to promises insetad of callback function
+// convert this to promises insetad of callback function
 
-// // let mypromise = new Promise((resolve,reject)=>{
-// //     let success = false;
+// let mypromise = new Promise((resolve,reject)=>{
+//     let success = false;
     
-// //     setTimeout(() => {
-// //         if(success){
-// //             let data = "User data received";
-// //             resolve(data)
-// //         }
-// //         else{
-// //             reject("error agaya hai")
-// //         }
+//     setTimeout(() => {
+//         if(success){
+//             let data = "User data received";
+//             resolve(data)
+//         }
+//         else{
+//             reject("error agaya hai")
+//         }
        
-// //     }, 2000);
-// // })
+//     }, 2000);
+// })
+
+
+let a;
+a= ;
+a();
+
 
 // // mypromise
 // // .then((data)=>{

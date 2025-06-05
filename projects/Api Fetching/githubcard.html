@@ -20,6 +20,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            animation: fadeInBackground 1s ease-in-out;
         }
 
         .container {
@@ -30,6 +31,7 @@
             border-radius: 15px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease-in-out;
+            animation: fadeInContainer 0.8s ease-in-out;
         }
 
         .container:hover {
@@ -40,12 +42,14 @@
             color: #ffcc00;
             text-shadow: 2px 2px 8px rgba(255, 204, 0, 0.7);
             margin-bottom: 10px;
+            animation: bounce 1s infinite alternate;
         }
 
         .find {
             display: flex;
             justify-content: center;
             margin: 20px 0;
+            animation: fadeIn 1s ease-in-out;
         }
 
         input {
@@ -63,6 +67,7 @@
         input:focus {
             border-color: #e6b800;
             box-shadow: 0 0 10px rgba(255, 204, 0, 0.7);
+            transform: scale(1.05);
         }
 
         button {
@@ -81,12 +86,15 @@
         button:hover {
             background: #e6b800;
             box-shadow: 0 6px 15px rgba(255, 204, 0, 0.9);
+            transform: scale(1.1);
         }
 
         #error-message {
             color: red;
             font-weight: bold;
             margin-top: 10px;
+            opacity: 0;
+            animation: fadeInErrorMessage 1s ease-in-out forwards;
         }
 
         .card {
@@ -150,6 +158,44 @@
             to {
                 opacity: 1;
                 transform: scale(1);
+            }
+        }
+
+        @keyframes fadeInBackground {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInContainer {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounce {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInErrorMessage {
+            to {
+                opacity: 1;
             }
         }
     </style>

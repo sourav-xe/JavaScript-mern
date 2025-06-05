@@ -12,7 +12,6 @@
 
 
 
-
 // function greet(name, callback) {
 //     console.log("Hello, " + name);
 //     callback();
@@ -22,7 +21,18 @@
 //     console.log("See you later!");
 // });
 
+ 
 
+ function times(a,func){
+    return func(a);
+}
+
+function mult(num){
+    for(let i =1 ; i<=3 ; i++){
+        console.log(num)
+    }
+}
+times("hello",mult)
 
 
 
@@ -157,13 +167,13 @@
 
 
 
-function processArray(arr, callback) {
-    return arr.map(callback); // Apply the callback to each element
-}
+// function processArray(arr, callback) {
+//     return arr.map(callback); // Apply the callback to each element
+// }
 
-function double(num) {
-    return num * 2;
-}
+// function double(num) {
+//     return num * 2;
+// }
 
-console.log(processArray([1], double)); 
-// Output: [2, 4, 6]
+// console.log(processArray([1], double)); 
+// // Output: [2, 4, 6]

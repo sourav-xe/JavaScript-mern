@@ -315,39 +315,72 @@
 
 
 
-async function fetchUserData() {
-    let random = Math.floor(Math.random()*10)
-    // console.log(random);
-    return new Promise ((resolve , reject)=>{
+// async function fetchUserData() {
+//     let random = Math.floor(Math.random()*10)
+//     // console.log(random);
+//     return new Promise ((resolve , reject)=>{
+//         setTimeout(() => {
+//             if(random>=5){
+//                 resolve("✅ User data loaded")
+//             }
+//             else{
+//                reject("❌ API failed") 
+//             }
+//         }, 1000);
+//     })
+// }
+
+//     async function loadData() {
+
+//         let attemp = 3
+
+//         for( let i = 1 ; i <= attemp ; i++){
+            
+//         try{
+//             let data = await fetchUserData();
+//             console.log( "It was sucessfull",data)
+//             return;
+//         }
+//         catch(error){
+//             console.log("Error occureed",error)
+//             await new Promise(resolve => setTimeout(resolve, 500));  // Delay before retry
+
+//         } 
+//     }
+//     console.log("❌ API request failed after 3 attempts");   
+       
+//     };
+//   loadData();
+
+  
+async function FetchUserData() {
+    return new Promise((resolve , reject)=>{
+        let random  = Math.floor(Math.random())*10
         setTimeout(() => {
-            if(random>=5){
-                resolve("✅ User data loaded")
+            if(random>5){
+                resolve("user data loaded");
             }
             else{
-               reject("❌ API failed") 
+                reject("Error occured in laoding")
             }
         }, 1000);
     })
 }
-
-    async function loadData() {
-
-        let attemp = 3
-
-        for( let i = 1 ; i <= attemp ; i++){
+async function getData(params) {
+  let   attemp = 3
+   
+       
+        for(i=1;i<=attemp;i++){
             
         try{
-            let data = await fetchUserData();
-            console.log( "It was sucessfull",data)
+            let data = await FetchUserData();
+            console.log("loading",data);
             return;
         }
         catch(error){
-            console.log("Error occureed",error)
-            await new Promise(resolve => setTimeout(resolve, 500));  // Delay before retry
-
-        } 
-    }
-    console.log("❌ API request failed after 3 attempts");   
-       
-    };
-  loadData();
+            console.log("its fails",error)
+        }
+        console.log("❌ API request failed after 3 attempts");   
+}
+}
+getData();

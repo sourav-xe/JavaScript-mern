@@ -177,17 +177,29 @@ function createCounter() {
 // The counter value should be private and not accessible directly.
 
 
-function counter(){
-    let count = 0 ;
-    return function inner(){ 
-        setTimeout(() => {
-            count ++;
-            console.log(count) 
-        },count *1000);
+// function counter(){
+//     let count = 0 ;
+//     return function inner(){ 
+//         setTimeout(() => {
+//             count ++;
+//             console.log(count) 
+//         },count *1000);
+        
+//     }
+// }
+//  let a=counter();
+// a();
+// a();
+// a();
+
+function mult(){
+    let a =3;
+    function ok(){
+        let b =3
+        data = a*b;
+        console.log("multiple = ",data);
         
     }
+    return ok();
 }
- let a=counter();
-a();
-a();
-a();
+mult();
